@@ -1,8 +1,8 @@
 %define name	gammu
-%define version	1.09.00
+%define version	1.10.0
 %define release	%mkrel 1
 
-%define major 0.0
+%define major 1.0
 %define libname %mklibname %{name} %major
 %define libnamedev %mklibname %{name} %major -d
 
@@ -65,7 +65,7 @@ make DESTDIR=%{buildroot} installlib
 
 %files 
 %defattr(-,root,root)
-%doc changelog copying readme.txt docs/examples docs/docs
+%doc ChangeLog COPYING INSTALL README VERSION docs/examples docs/docs
 %attr(0644,root,root) %config(noreplace) %{_sysconfdir}/gammurc
 %attr(0755,root,root) %{_bindir}/gammu
 %{_datadir}/gammu
@@ -73,7 +73,7 @@ make DESTDIR=%{buildroot} installlib
 
 %files -n %libname
 %defattr(-,root,root)
-%attr(0755,root,root) %_libdir/*.so.0
+%attr(0755,root,root) %_libdir/*.so.1
 %attr(0755,root,root) %_libdir/*.so.%major
 
 %files -n %libnamedev
@@ -89,5 +89,3 @@ rm -rf %{buildroot}
 
 %post -n %libname -p /sbin/ldconfig
 %postun -n %libname -p /sbin/ldconfig
-
-
