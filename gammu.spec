@@ -1,10 +1,10 @@
 %define name	gammu
-%define version	1.10.0
+%define version	1.12.0
 %define release	%mkrel 1
 
 %define major 1.0
 %define libname %mklibname %{name} %major
-%define libnamedev %mklibname %{name} %major -d
+%define libnamedev %mklibname %{name} -d
 
 
 Summary:		Mobile phones tools for Unix (Linux) and Win32
@@ -41,6 +41,7 @@ Summary:		Headers and pkgconfig file for Gammu development
 Group:			Development/Other
 Requires:		%libname = %version
 Provides:		libgammu-devel
+Obsoletes:		%libname-devel
 
 %description -n %libnamedev
 This package contains the headers and pkgconfig file that programmers
