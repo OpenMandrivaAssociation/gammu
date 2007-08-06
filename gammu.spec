@@ -50,9 +50,10 @@ will need to develop applications which will use libGammu.
 %setup -q
 
 %build
-%configure --enable-cb --enable-7110incoming \
+%cmake
+#%configure --enable-cb --enable-7110incoming \
 	--with-docdir=%{_docdir}/%{name}-%{version}
-%{__make}
+make
 
 %install
 rm -rf %{buildroot}
