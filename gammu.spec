@@ -15,7 +15,7 @@ Group:			Communications
 Source:			http://www.mwiacek.com/zips/gsm/gammu/stable/1_0x/%{name}-%{version}.tar.bz2
 URL:			http://www.gammu.org/
 BuildRoot:		%{_tmppath}/%{name}-%{version}-root
-BuildRequires:		libbluez-devel cmake
+BuildRequires:		libbluez-devel cmake doxygen dot
 
 %description
 Gammu can do such things with cellular phones as making data calls,
