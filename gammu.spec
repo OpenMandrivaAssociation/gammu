@@ -2,7 +2,7 @@
 %define version	1.12.0
 %define release	%mkrel 1
 
-%define major 1.0
+%define major 2
 %define libname %mklibname %{name} %major
 %define libnamedev %mklibname %{name} -d
 
@@ -50,38 +50,37 @@ will need to develop applications which will use libGammu.
 %setup -q
 
 %build
-%cmake
-#%configure --enable-cb --enable-7110incoming \
-	--with-docdir=%{_docdir}/%{name}-%{version}
+%cmake -DENABLE_SHARED=ON
 make
 
 %install
 rm -rf %{buildroot}
-make DESTDIR=%{buildroot} installlib
+cd build
+%makeinstall_std
+cd -
 %__mkdir_p %{buildroot}%{_sysconfdir}
 %__sed -e 's|^port =.*$|port = /dev/ttyS0|' \
          -e 's|^connection =.*$|connection = dlr3|' \
          -e 's/$//' \
          < docs/examples/config/gammurc > %{buildroot}%{_sysconfdir}/gammurc
 
-%files 
+%find_lang %name
+
+%files -f %name.lang
 %defattr(-,root,root)
-%doc ChangeLog COPYING INSTALL README VERSION docs/examples docs/docs
+%doc ChangeLog COPYING INSTALL README VERSION docs/examples
 %attr(0644,root,root) %config(noreplace) %{_sysconfdir}/gammurc
-%attr(0755,root,root) %{_bindir}/gammu
-%{_datadir}/gammu
-%{_mandir}/man1/gammu.1*
+%attr(0755,root,root) %{_bindir}/*
+%{_mandir}/man1/*
 
 %files -n %libname
 %defattr(-,root,root)
-%attr(0755,root,root) %_libdir/*.so.1
-%attr(0755,root,root) %_libdir/*.so.%major
+%{_libdir}/*.so.%{major}*
 
 %files -n %libnamedev
 %defattr(-,root,root)
 %doc docs/develop/*
-%attr(0755,root,root) %{_libdir}/libGammu.so
-%attr(0755,root,root) %{_libdir}/libGammu.a
+%attr(0755,root,root) %{_libdir}/*.so
 %{_includedir}/gammu
 %{_libdir}/pkgconfig/gammu.pc
 
