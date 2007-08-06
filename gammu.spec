@@ -6,7 +6,6 @@
 %define libname %mklibname %{name} %major
 %define libnamedev %mklibname %{name} -d
 
-
 Summary:		Mobile phones tools for Unix (Linux) and Win32
 Name:			%{name}
 Version:		%{version}
@@ -16,7 +15,7 @@ Group:			Communications
 Source:			http://www.mwiacek.com/zips/gsm/gammu/stable/1_0x/%{name}-%{version}.tar.bz2
 URL:			http://www.gammu.org/
 BuildRoot:		%{_tmppath}/%{name}-%{version}-root
-BuildRequires:		libbluez-devel	
+BuildRequires:		libbluez-devel cmake
 
 %description
 Gammu can do such things with cellular phones as making data calls,
