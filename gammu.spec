@@ -13,6 +13,7 @@ Release:		%{release}
 License:		GPL
 Group:			Communications
 Source:			http://www.mwiacek.com/zips/gsm/gammu/stable/1_0x/%{name}-%{version}.tar.bz2
+Patch0:			gammu-1.12.93-64bit.patch
 URL:			http://www.gammu.org/
 BuildRoot:		%{_tmppath}/%{name}-%{version}-root
 BuildRequires:		libbluez-devel cmake doxygen
@@ -48,9 +49,10 @@ will need to develop applications which will use libGammu.
 
 %prep
 %setup -q
+%patch0 -p0
 
 %build
-%cmake -DENABLE_SHARED=ON
+%cmake -DENABLE_SHARED=ON -DINSTALL_LIB_DIR=%{_lib}
 make
 
 %install
