@@ -49,7 +49,7 @@ will need to develop applications which will use libGammu.
 
 %prep
 %setup -q
-%patch0 -p0
+%patch0 -p1
 
 %build
 %cmake -DENABLE_SHARED=ON -DINSTALL_LIB_DIR=%{_lib}
