@@ -1,6 +1,6 @@
 %define name	gammu
-%define version	1.12.93
-%define release	%mkrel 2
+%define version	1.12.94
+%define release	%mkrel 1
 
 %define major 2
 %define libname %mklibname %{name} %major
@@ -12,8 +12,7 @@ Version:		%{version}
 Release:		%{release}
 License:		GPL
 Group:			Communications
-Source:			http://www.mwiacek.com/zips/gsm/gammu/stable/1_0x/%{name}-%{version}.tar.bz2
-Patch0:			gammu-1.12.93-64bit.patch
+Source:			http://dl.cihar.com/gammu/releases/%{name}-%{version}.tar.bz2
 URL:			http://www.gammu.org/
 BuildRoot:		%{_tmppath}/%{name}-%{version}-root
 BuildRequires:		libbluez-devel cmake doxygen
@@ -40,7 +39,8 @@ settings and bookmarks and much more. Functions depend on the phone model.
 Summary:		Headers and pkgconfig file for Gammu development
 Group:			Development/Other
 Requires:		%libname = %version
-Provides:		libgammu-devel
+Provides:		libgammu-devel = %version-%release
+Provides:		%name-devel = %version-%release
 Obsoletes:		%libname-devel
 
 %description -n %libnamedev
@@ -49,7 +49,6 @@ will need to develop applications which will use libGammu.
 
 %prep
 %setup -q
-%patch0 -p1
 
 %build
 %cmake -DENABLE_SHARED=ON -DINSTALL_LIB_DIR=%{_lib}
