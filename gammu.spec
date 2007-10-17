@@ -13,9 +13,10 @@ Release:		%{release}
 License:		GPL
 Group:			Communications
 Source:			http://dl.cihar.com/gammu/releases/%{name}-%{version}.tar.bz2
+Patch0:			gammu-1.13.94-svn-1589.patch
 URL:			http://www.gammu.org/
 BuildRoot:		%{_tmppath}/%{name}-%{version}-root
-BuildRequires:		libbluez-devel cmake doxygen
+BuildRequires:		libbluez-devel cmake doxygen gettext-devel
 
 %description
 Gammu can do such things with cellular phones as making data calls,
@@ -49,6 +50,7 @@ will need to develop applications which will use libGammu.
 
 %prep
 %setup -q
+%patch0 -p1
 
 %build
 %cmake -DENABLE_SHARED=ON -DINSTALL_LIB_DIR=%{_lib}
