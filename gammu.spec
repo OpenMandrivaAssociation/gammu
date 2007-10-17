@@ -2,7 +2,7 @@
 %define version	1.13.94
 %define release	%mkrel 1
 
-%define major 2
+%define major 3
 %define libname %mklibname %{name} %major
 %define libnamedev %mklibname %{name} -d
 
@@ -50,7 +50,7 @@ will need to develop applications which will use libGammu.
 
 %prep
 %setup -q
-#%patch0 -p1
+%patch0 -p1
 
 %build
 %cmake -DENABLE_SHARED=ON -DINSTALL_LIB_DIR=%{_lib}
