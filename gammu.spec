@@ -1,6 +1,6 @@
 %define name	gammu
 %define version	1.13.94
-%define release	%mkrel 1
+%define release	%mkrel 2
 
 %define major 3
 %define libname %mklibname %{name} %major
@@ -42,7 +42,8 @@ Group:			Development/Other
 Requires:		%libname = %version
 Provides:		libgammu-devel = %version-%release
 Provides:		%name-devel = %version-%release
-Obsoletes:		%libname-devel
+Obsoletes:		%mklibname -d gammu 0.0
+Obsoletes:		%mklibname -d gammu 1.0
 
 %description -n %libnamedev
 This package contains the headers and pkgconfig file that programmers
