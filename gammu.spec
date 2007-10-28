@@ -1,6 +1,6 @@
 %define name	gammu
-%define version	1.13.94
-%define release	%mkrel 2
+%define version	1.13.95
+%define release	%mkrel 1
 
 %define major 3
 %define libname %mklibname %{name} %major
@@ -13,7 +13,6 @@ Release:		%{release}
 License:		GPL
 Group:			Communications
 Source:			http://dl.cihar.com/gammu/releases/%{name}-%{version}.tar.bz2
-Patch0:			gammu-1.13.94-svn-1628.patch
 URL:			http://www.gammu.org/
 BuildRoot:		%{_tmppath}/%{name}-%{version}-root
 BuildRequires:		libbluez-devel cmake doxygen gettext-devel
@@ -51,7 +50,6 @@ will need to develop applications which will use libGammu.
 
 %prep
 %setup -q
-%patch0 -p1
 
 %build
 %cmake -DENABLE_SHARED=ON -DINSTALL_LIB_DIR=%{_lib}
