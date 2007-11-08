@@ -1,5 +1,5 @@
 %define name	gammu
-%define version	1.13.95
+%define version	1.14.0
 %define release	%mkrel 1
 
 %define major 3
@@ -53,7 +53,7 @@ will need to develop applications which will use libGammu.
 
 %build
 %cmake -DENABLE_SHARED=ON -DINSTALL_LIB_DIR=%{_lib}
-make
+%make
 
 %install
 rm -rf %{buildroot}
