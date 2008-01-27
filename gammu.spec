@@ -1,5 +1,5 @@
 %define name	gammu
-%define version	1.17.0
+%define version	1.17.92
 %define release	%mkrel 1
 
 %define major 3
@@ -10,7 +10,7 @@ Summary:		Mobile phones tools for Unix (Linux) and Win32
 Name:			%{name}
 Version:		%{version}
 Release:		%{release}
-License:		GPL
+License:		GPLv2+
 Group:			Communications
 Source:			http://dl.cihar.com/gammu/releases/%{name}-%{version}.tar.bz2
 URL:			http://www.gammu.org/
