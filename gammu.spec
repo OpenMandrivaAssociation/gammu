@@ -1,5 +1,5 @@
 %define name	gammu
-%define version	1.18.0
+%define version	1.18.90
 %define release	%mkrel 1
 
 %define major 3
@@ -70,7 +70,7 @@ cd -
 
 %files -f %name.lang
 %defattr(-,root,root)
-%doc ChangeLog COPYING INSTALL README VERSION docs/examples
+%doc ChangeLog COPYING INSTALL README docs/examples
 %attr(0644,root,root) %config(noreplace) %{_sysconfdir}/gammurc
 %attr(0755,root,root) %{_bindir}/*
 %{_mandir}/man1/*
