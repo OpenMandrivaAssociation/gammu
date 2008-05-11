@@ -1,5 +1,5 @@
 %define name	gammu
-%define version	1.19.91
+%define version	1.20.0
 %define release	%mkrel 1
 
 %define major 3
