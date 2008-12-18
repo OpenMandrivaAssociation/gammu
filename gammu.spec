@@ -1,8 +1,8 @@
 %define name	gammu
-%define version	1.21.0
+%define version	1.22.0
 %define release	%mkrel 1
 
-%define major 4
+%define major 5
 %define libname %mklibname %{name} %major
 %define libnamedev %mklibname %{name} -d
 
@@ -52,14 +52,13 @@ will need to develop applications which will use libGammu.
 %setup -q
 
 %build
-%cmake -DENABLE_SHARED=ON -DINSTALL_LIB_DIR=%{_lib}
+%cmake -DINSTALL_LIB_DIR=%{_lib}
 %make
 
 %install
 rm -rf %{buildroot}
-cd build
-%makeinstall_std
-cd -
+%makeinstall_std -C build
+
 %__mkdir_p %{buildroot}%{_sysconfdir}
 %__sed -e 's|^port =.*$|port = /dev/ttyS0|' \
          -e 's|^connection =.*$|connection = dlr3|' \
