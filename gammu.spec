@@ -16,6 +16,7 @@ Source:			http://dl.cihar.com/gammu/releases/%{name}-%{version}.tar.bz2
 URL:			http://www.gammu.org/
 BuildRoot:		%{_tmppath}/%{name}-%{version}-root
 BuildRequires:		libbluez-devel cmake doxygen gettext-devel
+BuildRequires:		curl-devel mysql-devel postgresql-devel
 
 %description
 Gammu can do such things with cellular phones as making data calls,
