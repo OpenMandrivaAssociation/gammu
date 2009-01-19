@@ -1,8 +1,8 @@
 %define name	gammu
-%define version	1.22.1
+%define version	1.22.91
 %define release	%mkrel 1
 
-%define major 5
+%define major 6
 %define libname %mklibname %{name} %major
 %define libnamedev %mklibname %{name} -d
 
@@ -13,10 +13,12 @@ Release:		%{release}
 License:		GPLv2+
 Group:			Communications
 Source:			http://dl.cihar.com/gammu/releases/%{name}-%{version}.tar.bz2
+Patch0:			gammu-1.22.91-r3828.patch
 URL:			http://www.gammu.org/
 BuildRoot:		%{_tmppath}/%{name}-%{version}-root
 BuildRequires:		libbluez-devel cmake doxygen gettext-devel
 BuildRequires:		curl-devel mysql-devel postgresql-devel
+BuildRequires:		python-devel
 
 %description
 Gammu can do such things with cellular phones as making data calls,
@@ -28,6 +30,7 @@ settings and bookmarks and much more. Functions depend on the phone model.
 %package -n %libname
 Summary: Mobile phones tools for Unix (Linux) and Win32 (libraries)
 Group: System/Libraries
+Requires: %name = %version
 
 %description -n %libname
 Gammu can do such things with cellular phones as making data calls,
@@ -49,8 +52,19 @@ Obsoletes:		%mklibname -d gammu 1.0
 This package contains the headers and pkgconfig file that programmers
 will need to develop applications which will use libGammu.
 
+%package -n python-%name
+Summary:		Python module to communicate with mobile phones
+Group:			Communications
+Requires:		%name = %version
+%py_requires -d
+
+%description -n python-%name
+This provides gammu module, that can work with any phone Gammu
+supports - many Nokias, Siemens, Alcatel, ...
+
 %prep
 %setup -q
+%patch0 -p0
 
 %build
 %cmake -DINSTALL_LIB_DIR=%{_lib}
@@ -66,14 +80,27 @@ rm -rf %{buildroot}
          -e 's/$//' \
          < docs/examples/config/gammurc > %{buildroot}%{_sysconfdir}/gammurc
 
-%find_lang %name
+%find_lang %name %name lib%name
 
 %files -f %name.lang
 %defattr(-,root,root)
 %doc ChangeLog COPYING INSTALL README docs/examples
 %attr(0644,root,root) %config(noreplace) %{_sysconfdir}/gammurc
-%attr(0755,root,root) %{_bindir}/*
-%{_mandir}/man1/*
+%{_bindir}/gammu
+%{_bindir}/gammu-smsd
+%{_bindir}/gammu-smsd-inject
+%{_bindir}/jadmaker
+%{_mandir}/man1/gammu-smsd-inject.*
+%{_mandir}/man1/gammu-smsd.*
+%{_mandir}/man1/gammu.*
+%{_mandir}/man1/jadmaker.*
+%{_mandir}/man5/*
+%{_mandir}/man7/*
+%lang(cs) %{_mandir}/cs/man1/gammu-smsd-inject.*
+%lang(cs) %{_mandir}/cs/man1/gammu-smsd.*
+%lang(cs) %{_mandir}/cs/man1/jadmaker.*
+%lang(cs) %{_mandir}/cs/man5/*
+%lang(cs) %{_mandir}/cs/man7/*
 
 %files -n %libname
 %defattr(-,root,root)
@@ -82,9 +109,17 @@ rm -rf %{buildroot}
 %files -n %libnamedev
 %defattr(-,root,root)
 %doc docs/develop/*
-%attr(0755,root,root) %{_libdir}/*.so
+%{_bindir}/gammu-config
+%{_libdir}/*.so
 %{_includedir}/gammu
-%{_libdir}/pkgconfig/gammu.pc
+%{_mandir}/man1/gammu-config.*
+%lang(cs) %{_mandir}/cs/man1/gammu-config.*
+%{_libdir}/pkgconfig/*.pc
+
+%files -n python-%name
+%defattr(-,root,root)
+%doc python/README python/AUTHORS python/examples
+%py_platsitedir/gammu
 
 %clean
 rm -rf %{buildroot}
