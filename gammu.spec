@@ -1,5 +1,5 @@
 %define name	gammu
-%define version	1.22.91
+%define version	1.23.1
 %define release	%mkrel 1
 
 %define major 6
@@ -13,12 +13,12 @@ Release:		%{release}
 License:		GPLv2+
 Group:			Communications
 Source:			http://dl.cihar.com/gammu/releases/%{name}-%{version}.tar.bz2
-Patch0:			gammu-1.22.91-r3828.patch
 URL:			http://www.gammu.org/
 BuildRoot:		%{_tmppath}/%{name}-%{version}-root
 BuildRequires:		libbluez-devel cmake doxygen gettext-devel
 BuildRequires:		curl-devel mysql-devel postgresql-devel
 BuildRequires:		python-devel
+BuildRequires:		dbi-devel
 
 %description
 Gammu can do such things with cellular phones as making data calls,
@@ -64,7 +64,6 @@ supports - many Nokias, Siemens, Alcatel, ...
 
 %prep
 %setup -q
-%patch0 -p0
 
 %build
 %cmake -DINSTALL_LIB_DIR=%{_lib}
@@ -78,7 +77,7 @@ rm -rf %{buildroot}
 %__sed -e 's|^port =.*$|port = /dev/ttyS0|' \
          -e 's|^connection =.*$|connection = dlr3|' \
          -e 's/$//' \
-         < docs/examples/config/gammurc > %{buildroot}%{_sysconfdir}/gammurc
+         < docs/config/gammurc > %{buildroot}%{_sysconfdir}/gammurc
 
 %find_lang %name %name lib%name
 
@@ -86,17 +85,22 @@ rm -rf %{buildroot}
 %defattr(-,root,root)
 %doc ChangeLog COPYING INSTALL README docs/examples
 %attr(0644,root,root) %config(noreplace) %{_sysconfdir}/gammurc
+%{_sysconfdir}/bash_completion.d/gammu
 %{_bindir}/gammu
 %{_bindir}/gammu-smsd
 %{_bindir}/gammu-smsd-inject
+%{_bindir}/gammu-smsd-monitor
 %{_bindir}/jadmaker
 %{_mandir}/man1/gammu-smsd-inject.*
+%{_mandir}/man1/gammu-smsd-monitor.1.*
 %{_mandir}/man1/gammu-smsd.*
 %{_mandir}/man1/gammu.*
 %{_mandir}/man1/jadmaker.*
 %{_mandir}/man5/*
 %{_mandir}/man7/*
+%lang(cs) %{_mandir}/cs/man1/gammu.1.*
 %lang(cs) %{_mandir}/cs/man1/gammu-smsd-inject.*
+%lang(cs) %{_mandir}/cs/man1/gammu-smsd-monitor.1.lzma
 %lang(cs) %{_mandir}/cs/man1/gammu-smsd.*
 %lang(cs) %{_mandir}/cs/man1/jadmaker.*
 %lang(cs) %{_mandir}/cs/man5/*
@@ -118,7 +122,7 @@ rm -rf %{buildroot}
 
 %files -n python-%name
 %defattr(-,root,root)
-%doc python/README python/AUTHORS python/examples
+%doc python/examples
 %py_platsitedir/gammu
 
 %clean
