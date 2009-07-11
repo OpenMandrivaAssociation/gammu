@@ -18,7 +18,6 @@ BuildRoot:		%{_tmppath}/%{name}-%{version}-root
 BuildRequires:		libbluez-devel cmake doxygen gettext-devel
 BuildRequires:		curl-devel mysql-devel postgresql-devel
 BuildRequires:		python-devel
-BuildRequires:		libusb-devel
 BuildRequires:		dbi-devel
 
 %description
@@ -80,11 +79,13 @@ rm -rf %{buildroot}
          -e 's/$//' \
          < docs/config/gammurc > %{buildroot}%{_sysconfdir}/gammurc
 
+mv %buildroot%_datadir/doc/%name/devel %buildroot%_datadir/doc/%libnamedev
+
 %find_lang %name %name lib%name
 
 %files -f %name.lang
 %defattr(-,root,root)
-%doc ChangeLog COPYING INSTALL README docs/examples
+%doc ChangeLog COPYING INSTALL README
 %attr(0644,root,root) %config(noreplace) %{_sysconfdir}/gammurc
 %{_sysconfdir}/bash_completion.d/gammu
 %{_bindir}/gammu
@@ -106,6 +107,7 @@ rm -rf %{buildroot}
 %lang(cs) %{_mandir}/cs/man1/jadmaker.*
 %lang(cs) %{_mandir}/cs/man5/*
 %lang(cs) %{_mandir}/cs/man7/*
+%doc %{_datadir}/doc/%name
 
 %files -n %libname
 %defattr(-,root,root)
@@ -113,7 +115,7 @@ rm -rf %{buildroot}
 
 %files -n %libnamedev
 %defattr(-,root,root)
-%doc docs/develop/*
+%doc %{_datadir}/doc/%{libnamedev}
 %{_bindir}/gammu-config
 %{_libdir}/*.so
 %{_includedir}/gammu
