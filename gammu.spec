@@ -18,6 +18,7 @@ BuildRoot:		%{_tmppath}/%{name}-%{version}-root
 BuildRequires:		libbluez-devel cmake doxygen gettext-devel
 BuildRequires:		curl-devel mysql-devel postgresql-devel
 BuildRequires:		python-devel
+BuildRequires:		libusb-devel
 BuildRequires:		dbi-devel
 
 %description
