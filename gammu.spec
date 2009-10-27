@@ -1,6 +1,6 @@
 %define name	gammu
 %define version	1.26.1
-%define release	%mkrel 1
+%define release	%mkrel 2
 
 %define major 7
 %define libname %mklibname %{name} %major
@@ -13,6 +13,7 @@ Release:		%{release}
 License:		GPLv2+
 Group:			Communications
 Source:			http://dl.cihar.com/gammu/releases/%{name}-%{version}.tar.bz2
+Source1:		69-gammu-acl.rules
 URL:			http://www.gammu.org/
 BuildRoot:		%{_tmppath}/%{name}-%{version}-root
 BuildRequires:		libbluez-devel cmake doxygen gettext-devel
@@ -81,12 +82,16 @@ rm -rf %{buildroot}
 
 mv %buildroot%_datadir/doc/%name/devel %buildroot%_datadir/doc/%libnamedev
 
+mkdir -p %{buildroot}%{_sysconfdir}/udev/rules.d/
+install -m644 %{SOURCE1} %{buildroot}%{_sysconfdir}/udev/rules.d/69-gammu-acl.rules
+
 %find_lang %name %name lib%name
 
 %files -f %name.lang
 %defattr(-,root,root)
 %doc ChangeLog COPYING INSTALL README
 %attr(0644,root,root) %config(noreplace) %{_sysconfdir}/gammurc
+%{_sysconfdir}/udev/rules.d/*.rules
 %{_sysconfdir}/bash_completion.d/gammu
 %{_bindir}/gammu
 %{_bindir}/gammu-smsd
