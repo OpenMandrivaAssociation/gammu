@@ -68,7 +68,7 @@ supports - many Nokias, Siemens, Alcatel, ...
 
 %build
 %cmake -DINSTALL_LIB_DIR=%{_lib}
-%make
+make
 
 %install
 rm -rf %{buildroot}
