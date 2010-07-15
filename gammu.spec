@@ -1,5 +1,5 @@
 %define name	gammu
-%define version	1.27.0
+%define version	1.28.0
 %define release	%mkrel 1
 
 %define major 7
@@ -68,7 +68,7 @@ supports - many Nokias, Siemens, Alcatel, ...
 
 %build
 %cmake -DINSTALL_LIB_DIR=%{_lib}
-make
+%make
 
 %install
 rm -rf %{buildroot}
