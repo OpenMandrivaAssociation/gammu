@@ -20,6 +20,7 @@ BuildRequires:		libbluez-devel cmake doxygen gettext-devel
 BuildRequires:		curl-devel mysql-devel postgresql-devel
 BuildRequires:		python-devel
 BuildRequires:		dbi-devel
+BuildRequires:		usb1.0-devel
 
 %description
 Gammu can do such things with cellular phones as making data calls,
@@ -107,7 +108,7 @@ install -m644 %{SOURCE1} %{buildroot}%{_sysconfdir}/udev/rules.d/69-gammu-acl.ru
 %{_mandir}/man7/*
 %lang(cs) %{_mandir}/cs/man1/gammu.1.*
 %lang(cs) %{_mandir}/cs/man1/gammu-smsd-inject.*
-%lang(cs) %{_mandir}/cs/man1/gammu-smsd-monitor.1.lzma
+%lang(cs) %{_mandir}/cs/man1/gammu-smsd-monitor.1.*
 %lang(cs) %{_mandir}/cs/man1/gammu-smsd.*
 %lang(cs) %{_mandir}/cs/man1/jadmaker.*
 %lang(cs) %{_mandir}/cs/man5/*
