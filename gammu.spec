@@ -1,6 +1,6 @@
 %define name	gammu
-%define version	1.28.0
-%define release	%mkrel 6
+%define version	1.29.0
+%define release	%mkrel 1
 
 %define major 7
 %define libname %mklibname %{name} %major
@@ -81,8 +81,6 @@ rm -rf %{buildroot}
          -e 's/$//' \
          < docs/config/gammurc > %{buildroot}%{_sysconfdir}/gammurc
 
-mv %buildroot%_datadir/doc/%name/devel %buildroot%_datadir/doc/%libnamedev
-
 mkdir -p %{buildroot}%{_sysconfdir}/udev/rules.d/
 install -m644 %{SOURCE1} %{buildroot}%{_sysconfdir}/udev/rules.d/69-gammu-acl.rules
 
@@ -99,6 +97,7 @@ install -m644 %{SOURCE1} %{buildroot}%{_sysconfdir}/udev/rules.d/69-gammu-acl.ru
 %{_bindir}/gammu-smsd-inject
 %{_bindir}/gammu-smsd-monitor
 %{_bindir}/jadmaker
+%{_mandir}/man1/gammu-detect.*
 %{_mandir}/man1/gammu-smsd-inject.*
 %{_mandir}/man1/gammu-smsd-monitor.1.*
 %{_mandir}/man1/gammu-smsd.*
@@ -106,13 +105,6 @@ install -m644 %{SOURCE1} %{buildroot}%{_sysconfdir}/udev/rules.d/69-gammu-acl.ru
 %{_mandir}/man1/jadmaker.*
 %{_mandir}/man5/*
 %{_mandir}/man7/*
-%lang(cs) %{_mandir}/cs/man1/gammu.1.*
-%lang(cs) %{_mandir}/cs/man1/gammu-smsd-inject.*
-%lang(cs) %{_mandir}/cs/man1/gammu-smsd-monitor.1.*
-%lang(cs) %{_mandir}/cs/man1/gammu-smsd.*
-%lang(cs) %{_mandir}/cs/man1/jadmaker.*
-%lang(cs) %{_mandir}/cs/man5/*
-%lang(cs) %{_mandir}/cs/man7/*
 %doc %{_datadir}/doc/%name
 
 %files -n %libname
@@ -121,12 +113,10 @@ install -m644 %{SOURCE1} %{buildroot}%{_sysconfdir}/udev/rules.d/69-gammu-acl.ru
 
 %files -n %libnamedev
 %defattr(-,root,root)
-%doc %{_datadir}/doc/%{libnamedev}
 %{_bindir}/gammu-config
 %{_libdir}/*.so
 %{_includedir}/gammu
 %{_mandir}/man1/gammu-config.*
-%lang(cs) %{_mandir}/cs/man1/gammu-config.*
 %{_libdir}/pkgconfig/*.pc
 
 %files -n python-%name
