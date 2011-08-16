@@ -1,6 +1,6 @@
 %define name	gammu
 %define version	1.29.0
-%define release	%mkrel 1
+%define release	%mkrel 2
 
 %define major 7
 %define libname %mklibname %{name} %major
