@@ -58,7 +58,7 @@ will need to develop applications which will use libGammu.
 Summary:		Python module to communicate with mobile phones
 Group:			Communications
 Requires:		%{name} = %{version}
-%py_requires -d
+BuildRequires:  python-devel
 
 %description -n python-%{name}
 This provides gammu module, that can work with any phone Gammu
