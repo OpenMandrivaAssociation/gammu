@@ -102,7 +102,7 @@ install -m644 %{SOURCE1} %{buildroot}%{_sysconfdir}/udev/rules.d/69-gammu-acl.ru
 %{_mandir}/man1/gammu-smsd.*
 %{_mandir}/man1/gammu.*
 %{_mandir}/man1/jadmaker.*
-%{_mandir}/man5/*
+%{_mandir}/man7/*
 %{_datadir}/%{name}
 
 %files -n %libname
