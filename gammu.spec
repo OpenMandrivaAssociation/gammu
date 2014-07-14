@@ -5,7 +5,7 @@
 Summary:		Mobile phones tools for Unix (Linux) and Win32
 Name:			gammu
 Version:		1.33.0
-Release:		4
+Release:		5
 License:		GPLv2+
 Group:			Communications
 Source:			http://dl.cihar.com/gammu/releases/%{name}-%{version}.tar.xz
