@@ -21,6 +21,8 @@ BuildRequires:		postgresql-devel
 BuildRequires:		python-devel
 BuildRequires:		dbi-devel
 BuildRequires:		usb1.0-devel
+BuildRequires:		systemd-units
+BuildRequires:		pkgconfig(systemd)
 
 %description
 Gammu can do such things with cellular phones as making data calls,
