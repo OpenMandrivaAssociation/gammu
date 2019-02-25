@@ -1,28 +1,28 @@
-%define major 7
-%define libname %mklibname %{name} %major
-%define libnamedev %mklibname %{name} -d
+%define major 8
+%define libname		%mklibname %{name} %major
+%define libnamedev	%mklibname %{name} -d
 
-Summary:		Mobile phones tools for Unix (Linux) and Win32
-Name:			gammu
-Version:		1.40.0
-Release:		1
-License:		GPLv2+
-Group:			Communications
-Source:			http://dl.cihar.com/gammu/releases/%{name}-%{version}.tar.xz
-Source1:		69-gammu-acl.rules
-URL:			http://www.gammu.org/
-BuildRequires:		cmake
-BuildRequires:		doxygen
-BuildRequires:		gettext-devel
-BuildRequires:		mysql-devel
-BuildRequires:		pkgconfig(bluez)
-BuildRequires:		pkgconfig(dbi)
-BuildRequires:		pkgconfig(libcurl)
-BuildRequires:		pkgconfig(libusb-1.0)
-BuildRequires:		pkgconfig(python)
-BuildRequires:		pkgconfig(systemd)
-BuildRequires:		postgresql-devel
-BuildRequires:		systemd-units
+Summary:	Mobile phones tools for Unix (Linux) and Win32
+Name:		gammu
+Version:	1.40.0
+Release:	1
+License:	GPLv2+
+Group:		Communications
+Source:		http://dl.cihar.com/gammu/releases/%{name}-%{version}.tar.xz
+Source1:	69-gammu-acl.rules
+URL:		http://www.gammu.org/
+BuildRequires:	cmake
+BuildRequires:	doxygen
+BuildRequires:	gettext-devel
+BuildRequires:	mysql-devel
+BuildRequires:	pkgconfig(bluez)
+BuildRequires:	pkgconfig(dbi)
+BuildRequires:	pkgconfig(libcurl)
+BuildRequires:	pkgconfig(libusb-1.0)
+BuildRequires:	pkgconfig(python)
+BuildRequires:	pkgconfig(systemd)
+BuildRequires:	postgresql-devel
+BuildRequires:	systemd-units
 
 %description
 Gammu can do such things with cellular phones as making data calls,
@@ -50,11 +50,13 @@ settings and bookmarks and much more. Functions depend on the phone model.
 %{_mandir}/man1/jadmaker.*
 %{_mandir}/man5/*
 %{_mandir}/man7/*
-#%doc %{_datadir}/doc/%{name}
+%dir %{_docdir}/%{name}
+%{_docdir}/%{name}/*
 %{_datadir}/%{name}
 /lib/systemd/system/gammu-smsd.service
 
 #---------------------------------------------------------------------------
+
 %package -n %libname
 Summary:	Mobile phones tools for Unix (Linux) and Win32 (libraries)
 Group:		System/Libraries
@@ -78,8 +80,6 @@ Group:		Development/Other
 Requires:	%libname = %{version}
 Provides:	libgammu-devel = %{version}-%{release}
 Provides:	%{name}-devel = %{version}-%{release}
-#Obsoletes:	%mklibname -d gammu 0.0
-#Obsoletes:	%mklibname -d gammu 1.0
 
 %description -n %libnamedev
 This package contains the headers and pkgconfig file that programmers
@@ -94,22 +94,6 @@ will need to develop applications which will use libGammu.
 
 #---------------------------------------------------------------------------
 
-%package -n python-%{name}
-Summary:	Python module to communicate with mobile phones
-Group:		Communications
-Requires:	%{name} = %{version}
-BuildRequires:	pkgconfig(python)
-
-%description -n python-%{name}
-This provides gammu module, that can work with any phone Gammu
-supports - many Nokias, Siemens, Alcatel, ...
-
-%files -n python-%{name}
-%doc python/examples
-%{py_platsitedir}/gammu
-
-#---------------------------------------------------------------------------
-
 %prep
 %setup -q
 %autopatch -p1
@@ -121,14 +105,15 @@ supports - many Nokias, Siemens, Alcatel, ...
 %install
 %make_install -C build
 
-mkdir -p %{buildroot}%{_sysconfdir}
+install -dm 0755 %{buildroot}%{_sysconfdir}
 sed -e 's|^port =.*$|port = /dev/ttyS0|' \
 	-e 's|^connection =.*$|connection = dlr3|' \
 	-e 's/$//' \
 	< docs/config/gammurc > %{buildroot}%{_sysconfdir}/gammurc
 
-mkdir -p %{buildroot}%{_sysconfdir}/udev/rules.d/
-install -m644 %{SOURCE1} %{buildroot}%{_sysconfdir}/udev/rules.d/69-gammu-acl.rules
+install -dm 0755 %{buildroot}%{_sysconfdir}/udev/rules.d/
+install -pm 0644 %{SOURCE1} %{buildroot}%{_sysconfdir}/udev/rules.d/69-gammu-acl.rules
 
 # locales
 %find_lang %{name} lib%{name} %{name}.lang
+
