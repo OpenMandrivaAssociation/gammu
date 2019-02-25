@@ -17,6 +17,9 @@ BuildRequires:	gettext-devel
 BuildRequires:	mysql-devel
 BuildRequires:	pkgconfig(bluez)
 BuildRequires:	pkgconfig(dbi)
+BuildRequires:	pkgconfig(glib-2.0)
+BuildRequires:	pkgconfig(gobject-2.0)
+BuildRequires:	pkgconfig(gudev-1.0)
 BuildRequires:	pkgconfig(libcurl)
 BuildRequires:	pkgconfig(libusb-1.0)
 BuildRequires:	pkgconfig(python)
