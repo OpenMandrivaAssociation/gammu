@@ -99,12 +99,14 @@ will need to develop applications which will use libGammu.
 
 %prep
 %setup -q
+%autopatch -p1
 
 %build
 %cmake -DINSTALL_LIB_DIR=%{_lib}
-%make
+%make_build
+
 %install
-%makeinstall_std -C build
+%make_install -C build
 
 install -dm 0755 %{buildroot}%{_sysconfdir}
 sed -e 's|^port =.*$|port = /dev/ttyS0|' \
@@ -117,4 +119,3 @@ install -pm 0644 %{SOURCE1} %{buildroot}%{_sysconfdir}/udev/rules.d/69-gammu-acl
 
 # locales
 %find_lang %{name} lib%{name} %{name}.lang
-
