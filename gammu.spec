@@ -99,14 +99,12 @@ will need to develop applications which will use libGammu.
 
 %prep
 %setup -q
-%autopatch -p1
 
 %build
 %cmake -DINSTALL_LIB_DIR=%{_lib}
-%make_build
-
+%make
 %install
-%make_install -C build
+%makeinstall_std -C build
 
 install -dm 0755 %{buildroot}%{_sysconfdir}
 sed -e 's|^port =.*$|port = /dev/ttyS0|' \
