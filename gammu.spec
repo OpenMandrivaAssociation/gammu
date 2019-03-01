@@ -53,7 +53,6 @@ settings and bookmarks and much more. Functions depend on the phone model.
 %{_mandir}/man1/jadmaker.*
 %{_mandir}/man5/*
 %{_mandir}/man7/*
-%{_docdir}/%{name}
 %{_datadir}/%{name}
 /lib/systemd/system/gammu-smsd.service
 
