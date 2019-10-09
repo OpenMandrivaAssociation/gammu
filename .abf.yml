@@ -1,6 +1,2 @@
-removed_sources:
-  gammu-1.32.0.tar.xz: eaf5856ec98d1f0798651ab1828230f58fdc9a75
-  gammu-1.33.0.tar.xz: a964e5ae04e26371328b0b660fa5113a91c8ea4d
-  gammu-1.34.0.tar.xz: bd2aeb4f30acb85c1bca052ea70d6c73f46fc9bc
 sources:
-  gammu-1.40.0.tar.xz: 4346187a5f3a8f055f2356602a0544c175a1c130
+  gammu-1.41.0.tar.xz: 200747dbf19eedb602aae93b7cc8b55afc0940fe
