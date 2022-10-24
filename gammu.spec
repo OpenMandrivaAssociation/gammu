@@ -5,7 +5,7 @@
 Summary:	Mobile phones tools for Unix (Linux) and Win32
 Name:		gammu
 Version:	1.42.0
-Release:	2
+Release:	3
 License:	GPLv2+
 Group:		Communications
 Source:		http://dl.cihar.com/gammu/releases/%{name}-%{version}.tar.xz
@@ -35,7 +35,8 @@ types of logos), synchronizing time, enabling NetMonitor, managing WAP
 settings and bookmarks and much more. Functions depend on the phone model.
 
 %files -f %{name}.lang
-%doc ChangeLog COPYING INSTALL
+%license COPYING
+%doc ChangeLog INSTALL
 %attr(0644,root,root) %config(noreplace) %{_sysconfdir}/gammurc
 %{_sysconfdir}/udev/rules.d/*.rules
 %{_sysconfdir}/bash_completion.d/gammu
