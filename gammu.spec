@@ -10,7 +10,8 @@ Version:	1.42.0
 Release:	4
 License:	GPLv2+
 Group:		Communications
-Source:		http://dl.cihar.com/gammu/releases/%{name}-%{version}.tar.xz
+#Source0	http://dl.cihar.com/gammu/releases/%{name}-%{version}.tar.xz
+Source0:	https://github.com/gammu/%{name}/archive/refs/tags/%{version}/%{name}-%{version}.tar.gz
 Source1:	69-gammu-acl.rules
 URL:		http://www.gammu.org/
 BuildRequires:	cmake
@@ -107,6 +108,7 @@ will need to develop applications which will use libGammu.
 %autosetup -p1
 
 %build
+export LDFLAGS+=-lcurl
 %cmake \
 	-DINSTALL_LIB_DIR=%{_lib} \
 	-DONLINE_TESTING:BOOL=OFF \
