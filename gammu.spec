@@ -45,7 +45,7 @@ settings and bookmarks and much more. Functions depend on the phone model.
 %doc ChangeLog COPYING INSTALL README.rst
 %attr(0644,root,root) %config(noreplace) %{_sysconfdir}/%{name}rc
 %{_sysconfdir}/udev/rules.d/*.rules
-%{_datadir}//bash-completion/completions/%{name}
+%{_sysconfdir}/bash_completion.d/%{name}
 %{_bindir}/%{name}
 %{_bindir}/%{name}-detect
 %{_bindir}/%{name}-smsd
