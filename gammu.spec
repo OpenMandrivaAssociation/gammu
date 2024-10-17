@@ -13,7 +13,7 @@ Group:		Communications
 #Source0	http://dl.cihar.com/gammu/releases/%{name}-%{version}.tar.xz
 Source0:	https://github.com/gammu/%{name}/archive/refs/tags/%{version}/%{name}-%{version}.tar.gz
 Source1:	69-gammu-acl.rules
-URL:		http://www.gammu.org/
+URL:		https://www.gammu.org/
 BuildRequires:	cmake
 BuildRequires:	ninja
 BuildRequires:	doxygen
